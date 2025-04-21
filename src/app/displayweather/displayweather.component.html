@@ -1,0 +1,103 @@
+
+<div class="text-black font-medium select-none p-4 dark:text-white">
+    
+    <div class=" text-center text-2xl font-semibold mb-4 rounded">
+      {{ this.address }}
+    </div>
+    
+    @if (weatherobject.length > 2){
+    <div class="md:flex flex-row gap-4">
+    @for (item of weatherobject.slice(1, weatherobject.length - 1); track item){
+   
+    <div class=" w-md max-w-md bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-4 dark:bg-gray-700">
+      
+      <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z" />
+        </svg>
+        {{ this.item.date }}
+      </div>
+  
+      
+      <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10V3a1 1 0 00-2 0v7a4 4 0 102 0z" />
+        </svg>
+        {{ this.item.temperature }}°
+      </div>
+  
+      
+      <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h12M3 18h6" />
+        </svg>
+        Wind: {{ this.item.windspeed }}
+      </div>
+  
+     
+      <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m4.22 1.78l-.71.71m4.24 4.24h-1m-1.78 4.22l-.71.71m-4.24 4.24v-1m-4.22-1.78l-.71-.71m-4.24-4.24h1m1.78-4.22l.71-.71" />
+        </svg>
+        {{ this.item.description }}
+      </div>
+  
+
+      <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        UV Index: {{ this.item.uvIndex }}
+      </div>
+    </div>
+
+}
+</div>
+}@else
+{
+    <div class="flex justify-center">
+    <div class=" w-md max-w-md bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-4 dark:bg-gray-700 ">
+        
+        <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3M16 7V3M3 11h18M5 19h14a2 2 0 002-2V7H3v10a2 2 0 002 2z" />
+          </svg>
+          {{ this.weatherobject[1].date }}
+        </div>
+    
+        
+        <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10V3a1 1 0 00-2 0v7a4 4 0 102 0z" />
+          </svg>
+          {{ this.weatherobject[1].temperature }}°
+        </div>
+    
+        
+        <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M3 6h12M3 18h6" />
+          </svg>
+          Wind: {{ this.weatherobject[1].windspeed }}
+        </div>
+    
+       
+        <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m4.22 1.78l-.71.71m4.24 4.24h-1m-1.78 4.22l-.71.71m-4.24 4.24v-1m-4.22-1.78l-.71-.71m-4.24-4.24h1m1.78-4.22l.71-.71" />
+          </svg>
+          {{ this.weatherobject[1].description }}
+        </div>
+    
+       
+        <div class="flex items-center gap-2 text-gray-700 dark:text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          UV Index: {{ this.weatherobject[1].uvIndex }}
+        </div>
+      </div>
+    </div>
+}
+
+</div>
