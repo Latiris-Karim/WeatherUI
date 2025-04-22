@@ -15,5 +15,6 @@ export class DisplayweatherComponent {
 
 ngOnInit(){
   this.weatherobject = this.data.weatherData
+  this.address = this.weatherobject[0].address
 }
 }
