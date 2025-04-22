@@ -1,0 +1,30 @@
+steps:
+  # Build the Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$_PROJECT_ID/weather-ui', '--no-cache', '.']
+  
+  # Push the image to Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$_PROJECT_ID/weather-ui']
+
+  # Deploy the image to Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: bash
+    args:
+      - -c
+      - |
+        gcloud run deploy weatherui \
+          --image=gcr.io/$_PROJECT_ID/weather-ui \
+          --platform=managed \
+          --region=$_REGION \
+          --allow-unauthenticated \
+          --vpc-connector=$_VPC_CONNECTOR \
+          --set-env-vars=GOOGLE_CLOUD_PROJECT=$_PROJECT_ID,ENVIRONMENT=$_ENVIRONMENT
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  _PROJECT_ID: leafy-ether-456618-q6
+  _REGION: europe-west10
+  _ENVIRONMENT: production
