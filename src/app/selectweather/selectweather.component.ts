@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 
 export class SelectweatherComponent {
   error: boolean = false
-  errormsg: any = ""
+  
 
   weather = new FormGroup({
     city: new FormControl(''),
@@ -25,10 +25,7 @@ export class SelectweatherComponent {
   });
   
   constructor(private http: HttprequestService, private data: DatasharingService, private router: Router) {}
-  ngOnInit(){
-     
-  }
-
+  
   submitForm() {
     const params = new HttpParams()
       .set('city', this.weather.value.city!)
@@ -38,11 +35,12 @@ export class SelectweatherComponent {
       next: (response: any) => {
 
       this.data.weatherData = response
+      
+      if (typeof response === 'string') {
+        this.error = true;
+      }
 
-      if(response="invalid cit, or country"){
-        this.error = true
-        
-      }else{
+      if(this.error === false){
         this.router.navigate(['/weather'])
       }
       },
@@ -50,7 +48,7 @@ export class SelectweatherComponent {
         console.error('Error fetching weather data:', err);
       }
     });
-   
+    this.error = false
   }
 }
   
