@@ -9,8 +9,22 @@ import { CommonModule } from '@angular/common';//needed for ngif
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  isMenuOpen = false
   isDarkMode = false
+
+  ngOnInit() {
+    this.initializeColorPref()
+  }
+  initializeColorPref() {
+    const colorPref = localStorage.getItem('darkMode')
+
+    this.isDarkMode = colorPref === 'true';
+  
+    if (this.isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
 
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
@@ -20,5 +34,6 @@ export class HeaderComponent {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    localStorage.setItem('darkMode', this.isDarkMode.toString())
   }
 }
