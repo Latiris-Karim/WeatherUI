@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 
 
 export class SelectweatherComponent {
+  error: boolean = false
+  errormsg: any = ""
 
   weather = new FormGroup({
     city: new FormControl(''),
@@ -36,9 +38,13 @@ export class SelectweatherComponent {
       next: (response: any) => {
 
       this.data.weatherData = response
-      this.router.navigate(['/weather'])
-      
-   
+
+      if(response="invalid cit, or country"){
+        this.error = true
+        
+      }else{
+        this.router.navigate(['/weather'])
+      }
       },
       error: (err) => {
         console.error('Error fetching weather data:', err);
